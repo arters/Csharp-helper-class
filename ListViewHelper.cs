@@ -15,7 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Arters
+namespace UavUpload
 {
     class ListViewHelper
     {
@@ -78,7 +78,8 @@ namespace Arters
                 Text = header.Text,
                 Width = header.Width,
                 TextAlign = header.TextAlign,
-                Tag = header.Tag
+                Tag = header.Tag,
+
             };
             listViewControl.Columns.Add(cheader);
         }
@@ -95,7 +96,7 @@ namespace Arters
         /// <summary>
         /// 增加 ListView 列(指定位置)預設插入到最頂端
         /// </summary>
-        public static void InsertListView(ListView listViewControl,string[] DataArr, int index = 0)
+        public static void InsertListView(ListView listViewControl, string[] DataArr, int index = 0)
         {
             ListViewItem lvi = new ListViewItem(DataArr);
             listViewControl.Items.Insert(index, lvi);
@@ -103,13 +104,28 @@ namespace Arters
 
 
         /// <summary>
+        /// 刪除被選取的項目
+        /// Delete the Selected Item(s) from ListView
+        /// </summary>
+        /// 
+        public static bool DeleteSelectedRows(ListView listViewControl)
+        {
+            bool delete = false;
+            foreach (ListViewItem eachItem in listViewControl.SelectedItems)
+            {
+                listViewControl.Items.Remove(eachItem);
+                delete = true;
+            }
+            return delete;
+        }
+        /// <summary>
         /// 指定標題列找出符合的資料後刪除整列
         /// </summary>
         /// 
         public static bool DeleteRowByHeaderName(ListView listViewControl, string find, string headerName)
         {
-            int index =  FindIndexByHeaderName(listViewControl, find, headerName);
-            if(index > 0)
+            int index = FindIndexByHeaderName(listViewControl, find, headerName);
+            if (index > 0)
             {
                 listViewControl.Items.RemoveAt(index);
                 return true;
