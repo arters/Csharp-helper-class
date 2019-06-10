@@ -98,7 +98,7 @@ namespace Arters
         public static void InsertListView(ListView listViewControl,string[] DataArr, int index = 0)
         {
             ListViewItem lvi = new ListViewItem(DataArr);
-            listViewControl.Items.Insert(index ,lvi);
+            listViewControl.Items.Insert(index, lvi);
         }
 
 
