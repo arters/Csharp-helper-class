@@ -64,3 +64,9 @@ ListViewHelper.DeleteRowByHeaderName(listView1, "11135", "標題3"));
 
 // 指定標題列找出符合的資料位於第幾列
 MessageBox.Show( ListViewHelper.FindIndexByHeaderName(listView1, "11135", "標題3").ToString());
+
+// 刪除所選取的列(一或多列)
+ListViewHelper.DeleteSelectedRows(listView1);
+
+
+
