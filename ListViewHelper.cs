@@ -1,4 +1,13 @@
-// 2019/06/05
+/**
+ * ListViewHelper - ListViewHelper is a helper class that provides methods that
+ * help ListView control in Windows Forms. 
+ * https://github.com/arters/Csharp-helper-class/
+ *
+ * @author Jwu
+ * @license MIT
+ *
+ * @version 1.0.0
+ */
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +19,6 @@ namespace Arters
 {
     class ListViewHelper
     {
-
         public static List<ListViewHeader> ListViewHeaders = new List<ListViewHeader>();
         public class ListViewHeader
         {
@@ -22,25 +30,19 @@ namespace Arters
         }
 
         /// <summary>
-        /// //設置成 Details 模式
+        /// //設置 Details 模式
         /// </summary>
         public static void SetListViewDetails(ListView listViewControl)
         {
             listViewControl.View = View.Details;//ListView顯示方式
             listViewControl.FullRowSelect = true;
             listViewControl.GridLines = true;
-
         }
 
         /// <summary>
         /// 初始化 ListView
         /// 增加Item的標題
         /// </summary>
-        /// <remarks>
-        /// 範例：
-        /// string[] HeaderArr = { "標題1", "標題2", "標題3"};
-        /// ListViewHelper.InitListView(listView1, HeaderArr);
-        /// </remarks>
         public static void InitListViewColumnName(ListView listViewControl, string[] ColumnsArr)
         {
             // Create columns for the items and subitems.
@@ -52,32 +54,38 @@ namespace Arters
                 listViewControl.Columns[index].Name = ColumnName;
                 ++index;
             }
-            //listViewControl.Columns[0].Name = "Column 1";
-            //listViewControl.Columns[1].Name = "Column 2";
 
         }
+
         /// <summary>
-        /// 初始化 ListView
+        /// 建立 ListView 標題列
         /// </summary>
-        public static void InitListViewColumn(ListView listViewControl, ListViewHeader header)
+        public static void CreateListViewColumn(ListView listViewControl, ColumnHeader[] headerList)
         {
-            ColumnHeader cheader = new ColumnHeader();
-            cheader.Name = header.Name;
-            cheader.Text = header.Text;
-            cheader.Width = header.Width;
-            cheader.TextAlign = header.TextAlign;
-            cheader.Tag = header.Tag;
+            for (int i = 0; i < headerList.Count(); i++)
+            {
+                CreateListViewColumn(listViewControl, headerList[i]);
+            }
+        }
+        /// <summary>
+        /// 建立 ListView 標題列
+        /// </summary>
+        public static void CreateListViewColumn(ListView listViewControl, ColumnHeader header)
+        {
+            ColumnHeader cheader = new ColumnHeader
+            {
+                Name = header.Name,
+                Text = header.Text,
+                Width = header.Width,
+                TextAlign = header.TextAlign,
+                Tag = header.Tag
+            };
             listViewControl.Columns.Add(cheader);
         }
 
         /// <summary>
         /// 增加 ListView 列
         /// </summary>
-        /// <remarks>
-        /// 範例：
-        /// string[] dataArr = { "欄位1", "欄位2", "欄位3"};
-        /// ListViewHelper.AddListView(listView1, dataArr);
-        /// </remarks>
         public static void AddListView(ListView listViewControl, string[] DataArr)
         {
             ListViewItem lvi = new ListViewItem(DataArr);
@@ -87,23 +95,16 @@ namespace Arters
         /// <summary>
         /// 增加 ListView 列(指定位置)預設插入到最頂端
         /// </summary>
-        /// <remarks>
-        /// 範例：
-        /// string[] dataArr = { "欄位1", "欄位2", "欄位3"};
-        /// ListViewHelper.InsertListView(listView1, dataArr);
-        /// </remarks>
         public static void InsertListView(ListView listViewControl,string[] DataArr, int index = 0)
         {
             ListViewItem lvi = new ListViewItem(DataArr);
             listViewControl.Items.Insert(index ,lvi);
         }
 
+
         /// <summary>
         /// 指定標題列找出符合的資料後刪除整列
         /// </summary>
-        /// <remarks>
-        /// 範例：DeleteRowByHeaderName(listView1, "11135", "標題3"));
-        /// </remarks>
         /// 
         public static bool DeleteRowByHeaderName(ListView listViewControl, string find, string headerName)
         {
@@ -121,9 +122,6 @@ namespace Arters
         /// <param name="find">要匹配吻合的文字</param>
         /// <param name="headerName">標題列</param>
         /// <returns>Row index。-1 表示找不到</returns>
-        /// <remarks>
-        /// 範例：MessageBox.Show( FindIndexByHeaderName(listView1, "11135", "標題3").ToString());
-        /// </remarks>
         public static int FindIndexByHeaderName(ListView listViewControl, string find, string headerName)
         {
             int index = -1;
