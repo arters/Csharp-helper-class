@@ -69,4 +69,18 @@ MessageBox.Show( ListViewHelper.FindIndexByHeaderName(listView1, "11135", "標�
 ListViewHelper.DeleteSelectedRows(listView1);
 
 
+// 更新 ListView 中的某個欄位
+// Replace/update listview item cell.
+listView1.Items[row].SubItems[col].Text = "your new text";
 
+// 點選 listview 單一格獲取列跟行數的位置以及欄位值
+// Get selected item value from single cell in listview control 
+ListView ListViewControl = sender as ListView;
+Point mousePos = ListViewControl.PointToClient(Control.MousePosition);
+ListViewHitTestInfo info = ListViewControl.HitTest(mousePos);
+int row = info.Item.Index;
+int col = info.Item.SubItems.IndexOf(info.SubItem);
+string value = info.Item.SubItems[col].Text;
+
+// 刷新 ListView
+listView1.Refresh(); 
