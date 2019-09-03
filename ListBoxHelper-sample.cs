@@ -14,3 +14,11 @@
 // 範例：
 ListBoxHelper.Find(listBox1, "關鍵字");
 ListBoxHelper.Find(listBox1, QueryTextBox.Text);
+
+
+// 迴圈取出所有 ListBox 的 Key/Value 值
+// 使用 foreach 遍歷 listbox 的所有項
+ foreach (KeyValuePair<string, string> item in listBox1.Items)
+ {
+     Console.WriteLine("Key = {0}, Value = {1}", item.Key, item.Value);
+ }
