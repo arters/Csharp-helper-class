@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -53,6 +55,47 @@ namespace ArterForm
                     break;
                 }
                 StratQueryPos++;
+            }
+        }
+
+        /// <summary>
+        /// 選取 ListBox 中符合的項目 (依照 Value)
+        /// </summary>
+        /// <param name="listbox"></param>
+        /// <param name="KeyStr"></param>
+        public static void SetByKey(ListBox listbox, string KeyStr = "")
+        {
+            int i = 0;
+            string ListText = "";
+            foreach (KeyValuePair<string, string> item in listbox.Items)
+            {
+                ListText = item.Key;
+                if (ListText == KeyStr)
+                {
+                    listbox.SetSelected(i, true);//把該列選取起來
+                    break;
+                }
+                i++;
+            }
+        }
+        /// <summary>
+        /// 選取 ListBox 中符合的項目 (依照 Value)
+        /// </summary>
+        /// <param name="listbox"></param>
+        /// <param name="ValueStr"></param>
+        public static void SetByValue(ListBox listbox, string ValueStr = "")
+        {
+            int i = 0;
+            string ListText = "";
+            foreach (KeyValuePair<string, string> item in listbox.Items)
+            {
+                ListText = item.Value;
+                if ( ListText == ValueStr )
+                {
+                    listbox.SetSelected(i, true);//把該列選取起來
+                    break;
+                }
+                i++;
             }
         }
     }
