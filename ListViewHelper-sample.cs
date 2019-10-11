@@ -95,3 +95,13 @@ string value = info.Item.SubItems[col].Text;
 
 // 刷新 ListView
 listView1.Refresh(); 
+
+//插入新資料
+ListViewItem lvi = new ListViewItem();
+lvi.SubItems.Add("test"1);
+lvi.SubItems.Add("test2"); 
+lvi.SubItems.Add("test3");
+lvi.SubItems.Add(DateTime.Now.ToString());
+//listView1.Items.Add(lvi); // 新增到尾部
+listView1.Items.Insert(0, lvi); // 新增到頂端
+
