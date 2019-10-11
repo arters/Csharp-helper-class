@@ -105,3 +105,6 @@ lvi.SubItems.Add(DateTime.Now.ToString());
 //listView1.Items.Add(lvi); // 新增到尾部
 listView1.Items.Insert(0, lvi); // 新增到頂端
 
+//清除所有列
+listView1.Items.Clear();
+
