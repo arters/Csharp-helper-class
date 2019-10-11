@@ -43,6 +43,17 @@ ListViewHelper.CreateListViewColumn(listView1, cheader);
 
 
 // 初始化 ListView
+
+LogListView.View = View.Details;
+LogListView.Bounds = new Rectangle(new Point(10, 10), new Size(300, 200));
+LogListView.AllowColumnReorder = true;
+// Display check boxes.
+LogListView.CheckBoxes = true;
+// Select the item and subitems when selection is made.
+LogListView.FullRowSelect = true;
+// Display grid lines.
+LogListView.GridLines = true;
+
 // 增加Item的標題(只增加Name屬性，不含其他properties)
 string[] HeaderArr = { "標題1", "標題2", "標題3"};
 ListViewHelper.InitListViewColumnName(listView1, HeaderArr);
